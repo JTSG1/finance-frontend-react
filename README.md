@@ -1,3 +1,7 @@
+# Finance Frontend #
+
+A project to create a more modern front-end for my django-finance backend
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
