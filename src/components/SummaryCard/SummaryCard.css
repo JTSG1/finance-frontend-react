@@ -1,0 +1,11 @@
+.negative-value{
+    color:red;
+}
+
+.auto-account{
+    border-left:1px solid green;
+}
+
+.manual-account{
+    border-left:1px solid red;
+}
