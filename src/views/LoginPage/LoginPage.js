@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardText, CardBody, CardFooter, Container, Form, Button } from 'react-bootstrap';
 import './LoginPage.css'; // Import your custom CSS
 import axios from 'axios';
-import api from '../../api'; // Import the Axios instance
+import api from '../../api/api'; // Import the Axios instance
 
 const LoginPage = ( {onLogin} ) => {
 
@@ -11,7 +11,9 @@ const LoginPage = ( {onLogin} ) => {
     const [formValues, setFormValues] = React.useState({
         username: '',
         password: '',
-        rememberMe: false,}
+        rememberMe: false,
+    }
+    
     );
      // Form values state
     const [formErrors, setFormErrors] = React.useState({}); // Form errors state
@@ -19,20 +21,16 @@ const LoginPage = ( {onLogin} ) => {
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
-        console.log(name);
         setFormValues({
             ...formValues,
             [name]: type === 'checkbox' ? checked : value,
         });
-        console.log(formValues);    
     };
 
     // more validaition needed
     // function needs more work
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        console.log(api);
 
         //const errors = validate();
         if (Object.keys(errors).length === 0) {
