@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import { Nav, Container, Row, Col } from 'react-bootstrap';
 import HomePage from './views/HomePage/HomePage';
 import AccountDrilldown from './views/AccountDrilldown/AccountDrilldown';
+import LoginPage from './views/LoginPage/LoginPage';
 import accountData from './data/accounts.json';
 import AccountCard from './components/AccountCard/AccountCard';
 import LeftColNav from './components/LeftColNav/LeftColNav';
@@ -25,33 +26,45 @@ function App() {
 
   let appName = "Super-Finance-App";
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Function to handle login
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
 
     <Router>
-      <div className="App">
-        <header style={ { height: '80px' } }>
-          <NavBar appName={ appName }/>
-        </header>
-
         <Container fluid>
-              <Row>
-                  <Col sm={1}>
-                      <LeftColNav />
-                  </Col>
-                  <Col sm={11}>
-                      <Routes>
-                        <Route path="/" element={ 
-                          <HomePage />
-                        }/>
-                        <Route path="/:accountIndex" element={ 
-                          <AccountDrilldown />
-                        }/>
-                      </Routes>
-                  </Col>
-              </Row>
+          <div className="App">
+            {isLoggedIn ? (
+                <div>
+                <header style={ { height: '80px' } }>
+                  <NavBar appName={ appName }/>
+                </header>
+                <Row>
+                    <Col sm={1}>
+                        <LeftColNav />
+                    </Col>
+                    <Col sm={11}>
+                        <Routes>
+                          <Route path="/" element={ 
+                            <HomePage />
+                          }/>
+                          <Route path="/:accountIndex" element={ 
+                            <AccountDrilldown />
+                          }/>
+                        </Routes>
+                    </Col>
+                </Row>
+                </div>
+            ) : (
+                <LoginPage onLogin={handleLogin}/>
+            )}
+          </div>
         </Container>
 
-      </div>
     </Router>
   );
 }
