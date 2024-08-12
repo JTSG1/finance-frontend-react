@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardText, CardBody, CardFooter, Container, Form, Button } from 'react-bootstrap';
 import './LoginPage.css'; // Import your custom CSS
 import axios from 'axios';
+import api from '../../api'; // Import the Axios instance
 
 const LoginPage = ( {onLogin} ) => {
 
@@ -31,14 +32,14 @@ const LoginPage = ( {onLogin} ) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(formValues);
+        console.log(api);
 
         //const errors = validate();
         if (Object.keys(errors).length === 0) {
             setIsSubmitting(true); // Set submitting state to true
 
             try {
-                const response = await axios.post('http://localhost:8000/api/token/', {
+                const response = await api.post('/api/token/', {
                     username: formValues.username,
                     password: formValues.password,
                 });
