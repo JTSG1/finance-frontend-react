@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
-import { Nav, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import HomePage from './views/HomePage/HomePage';
 import AccountDrilldown from './views/AccountDrilldown/AccountDrilldown';
+import UserProfilePage from './views/UserProfilePage/UserProfilePage';
 import LoginPage from './views/LoginPage/LoginPage';
-import accountData from './data/accounts.json';
-import AccountCard from './components/AccountCard/AccountCard';
 import LeftColNav from './components/LeftColNav/LeftColNav';
 
 // function AccountRoute() {
@@ -28,9 +27,27 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+
+    const accessToken = localStorage.getItem('access');
+    const refreshToken = localStorage.getItem('refresh');
+
+    if (accessToken && refreshToken) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+    
+  });
   // Function to handle login
   const handleLogin = () => {
-    setIsLoggedIn(true);
+
+    if(localStorage.getItem('access') && localStorage.getItem('refresh')){
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+
   };
 
   return (
@@ -43,21 +60,37 @@ function App() {
                 <header style={ { height: '80px' } }>
                   <NavBar appName={ appName }/>
                 </header>
-                <Row>
-                    <Col sm={1}>
-                        <LeftColNav />
-                    </Col>
-                    <Col sm={11}>
+                
                         <Routes>
                           <Route path="/" element={ 
-                            <HomePage />
+                            <Row>
+                              <Col sm={1}>
+                                  <LeftColNav />
+                              </Col>
+                              <Col sm={11}>
+                                <HomePage /> 
+                              </Col>
+                            </Row>
                           }/>
-                          <Route path="/:accountIndex" element={ 
-                            <AccountDrilldown />
+                          <Route path="/account/:accountIndex" element={ 
+                            <Row>
+                              <Col sm={1}>
+                                  <LeftColNav />
+                              </Col>
+                              <Col sm={11}>
+                              <AccountDrilldown />
+                              </Col>
+                            </Row>
+                          }/>
+                           <Route path="/userProfile/" element={ 
+                            <Row>
+                              <Col sm={12}>
+                              <UserProfilePage />
+                              </Col>
+                            </Row>
                           }/>
                         </Routes>
-                    </Col>
-                </Row>
+                        
                 </div>
             ) : (
                 <LoginPage onLogin={handleLogin}/>

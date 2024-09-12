@@ -1,0 +1,292 @@
+[
+    {
+        "id": "74fed1df14594f80d8faccc4be9248cb",
+        "latest_balance": {
+            "id": 155,
+            "available": "0.39",
+            "current": "0.39",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:08:53.471000Z",
+            "account": "74fed1df14594f80d8faccc4be9248cb"
+        },
+        "provider": {
+            "id": "ob-natwest",
+            "name": "NatWest",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/natwest.svg",
+            "reconciliation_id": "40626166-0278-423b-8544-286ed6cf8847"
+        },
+        "type": "TRANSACTION",
+        "display_name": "2. Main Account                                        ",
+        "iban": "GB75NWBK60400937823612",
+        "swift_bic": "NWBKGB2L",
+        "number": "37823612",
+        "sort_code": "60-40-09",
+        "update_timestamp": "2024-04-28T21:08:59.666000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "302920d97a5db1840f02c9c2d410c752",
+        "latest_balance": {
+            "id": 156,
+            "available": "0.70",
+            "current": "0.70",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:08:55.555000Z",
+            "account": "302920d97a5db1840f02c9c2d410c752"
+        },
+        "provider": {
+            "id": "ob-natwest",
+            "name": "NatWest",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/natwest.svg",
+            "reconciliation_id": "40626166-0278-423b-8544-286ed6cf8847"
+        },
+        "type": "TRANSACTION",
+        "display_name": "SELECT ACCOUNT",
+        "iban": "GB17NWBK60400941544218",
+        "swift_bic": "NWBKGB2L",
+        "number": "41544218",
+        "sort_code": "60-40-09",
+        "update_timestamp": "2024-04-28T21:08:59.666000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "6f25fe5264d986a439371587ae2bab33",
+        "latest_balance": {
+            "id": 159,
+            "available": "0.00",
+            "current": "0.00",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:09:00.490000Z",
+            "account": "6f25fe5264d986a439371587ae2bab33"
+        },
+        "provider": {
+            "id": "ob-lloyds",
+            "name": "Lloyds",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/lloyds.svg",
+            "reconciliation_id": "9f9f297b-dc0e-44dc-93f9-44fd8687887d"
+        },
+        "type": "TRANSACTION",
+        "display_name": "Mr James Tesh",
+        "iban": "GB10LOYD77741629189860",
+        "swift_bic": "LOYDGB2L",
+        "number": "29189860",
+        "sort_code": "77-74-16",
+        "update_timestamp": "2024-04-28T21:08:55.957000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "c0fe6d3e32f6147b794b59edd37535a6",
+        "latest_balance": {
+            "id": 137,
+            "available": "0.00",
+            "current": "0.00",
+            "overdraft_or_credit_limit": null,
+            "currency": "GBP",
+            "update_timestamp": "2024-04-28T20:50:04.011000Z",
+            "account": "c0fe6d3e32f6147b794b59edd37535a6"
+        },
+        "provider": {
+            "id": "ob-revolut",
+            "name": "Revolut",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/revolut.svg",
+            "reconciliation_id": "ddf049f7-4ea0-43b5-a467-b4a6c2db1ed1"
+        },
+        "type": "SAVINGS",
+        "display_name": "Savings",
+        "iban": "693f2a9b-b8d4-4416-9d5a-eccc078e8816",
+        "swift_bic": "REVOGB21",
+        "number": null,
+        "sort_code": null,
+        "update_timestamp": "2024-04-28T21:08:56.694000Z",
+        "disabled": true,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "MANUAL-SAVINGS-1",
+        "latest_balance": {
+            "id": 181,
+            "available": "-43935.79",
+            "current": "-43935.79",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-10T12:47:27.200986Z",
+            "account": "MANUAL-SAVINGS-1"
+        },
+        "provider": {
+            "id": "ob-natwest",
+            "name": "NatWest",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/natwest.svg",
+            "reconciliation_id": "40626166-0278-423b-8544-286ed6cf8847"
+        },
+        "type": "SAVINGS",
+        "display_name": "5. Regular Savings",
+        "iban": null,
+        "swift_bic": null,
+        "number": "38296039",
+        "sort_code": "604009",
+        "update_timestamp": "2024-06-03T17:17:47.901700Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": true
+    },
+    {
+        "id": "2a5233c3294b6683e4cb6183a33fa5eb",
+        "latest_balance": {
+            "id": 160,
+            "available": "2.01",
+            "current": "2.01",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:09:02.740000Z",
+            "account": "2a5233c3294b6683e4cb6183a33fa5eb"
+        },
+        "provider": {
+            "id": "ob-revolut",
+            "name": "Revolut",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/revolut.svg",
+            "reconciliation_id": "ddf049f7-4ea0-43b5-a467-b4a6c2db1ed1"
+        },
+        "type": "TRANSACTION",
+        "display_name": "James Tesh",
+        "iban": "GB94REVO00997011678251",
+        "swift_bic": "REVOGB21",
+        "number": "46793275",
+        "sort_code": "04-00-75",
+        "update_timestamp": "2024-04-28T21:08:56.694000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "45f614c720b04cc4f81a66939f928a1d",
+        "latest_balance": {
+            "id": 136,
+            "available": "0.00",
+            "current": "0.00",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "USD",
+            "update_timestamp": "2024-04-28T20:50:03.716000Z",
+            "account": "45f614c720b04cc4f81a66939f928a1d"
+        },
+        "provider": {
+            "id": "ob-revolut",
+            "name": "Revolut",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/revolut.svg",
+            "reconciliation_id": "ddf049f7-4ea0-43b5-a467-b4a6c2db1ed1"
+        },
+        "type": "TRANSACTION",
+        "display_name": "James Tesh",
+        "iban": "GB94REVO00997011678251",
+        "swift_bic": "REVOGB21",
+        "number": null,
+        "sort_code": null,
+        "update_timestamp": "2024-04-28T21:08:56.694000Z",
+        "disabled": true,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "8b2169dc11ee17369e80454680c76c69",
+        "latest_balance": {
+            "id": 157,
+            "available": "462.57",
+            "current": "-539.81",
+            "overdraft_or_credit_limit": "1200.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:08:57.467000Z",
+            "account": "8b2169dc11ee17369e80454680c76c69"
+        },
+        "provider": {
+            "id": "ob-natwest",
+            "name": "NatWest",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/natwest.svg",
+            "reconciliation_id": "40626166-0278-423b-8544-286ed6cf8847"
+        },
+        "type": "CREDIT",
+        "display_name": "MASTERCARD",
+        "iban": null,
+        "swift_bic": null,
+        "number": "4150",
+        "sort_code": null,
+        "update_timestamp": "2024-04-28T20:53:47.721000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "7cb11996e9854c3b35067553be57b4ee",
+        "latest_balance": {
+            "id": 138,
+            "available": "0.00",
+            "current": "0.00",
+            "overdraft_or_credit_limit": null,
+            "currency": "GBP",
+            "update_timestamp": "2024-04-28T20:50:04.359000Z",
+            "account": "7cb11996e9854c3b35067553be57b4ee"
+        },
+        "provider": {
+            "id": "ob-revolut",
+            "name": "Revolut",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/revolut.svg",
+            "reconciliation_id": "ddf049f7-4ea0-43b5-a467-b4a6c2db1ed1"
+        },
+        "type": "SAVINGS",
+        "display_name": "Fuel",
+        "iban": "3f386088-82d0-47b2-966b-e490023fbd45",
+        "swift_bic": "REVOGB21",
+        "number": null,
+        "sort_code": null,
+        "update_timestamp": "2024-04-28T21:08:56.694000Z",
+        "disabled": true,
+        "is_visible": true,
+        "is_manual_account": false
+    },
+    {
+        "id": "38c447ab02a2c63df0ab5284076f6455",
+        "latest_balance": {
+            "id": 158,
+            "available": "25.15",
+            "current": "25.15",
+            "overdraft_or_credit_limit": "0.00",
+            "currency": "GBP",
+            "update_timestamp": "2024-06-03T17:08:58.141000Z",
+            "account": "38c447ab02a2c63df0ab5284076f6455"
+        },
+        "provider": {
+            "id": "ob-natwest",
+            "name": "NatWest",
+            "country": "gb",
+            "logo_url": "https://truelayer-provider-assets.s3.amazonaws.com/global/logos/natwest.svg",
+            "reconciliation_id": "40626166-0278-423b-8544-286ed6cf8847"
+        },
+        "type": "TRANSACTION",
+        "display_name": "1. Wage, DD Account                                    ",
+        "iban": "GB72NWBK60400917122120",
+        "swift_bic": "NWBKGB2L",
+        "number": "17122120",
+        "sort_code": "60-40-09",
+        "update_timestamp": "2024-04-28T21:08:59.666000Z",
+        "disabled": false,
+        "is_visible": true,
+        "is_manual_account": false
+    }
+]

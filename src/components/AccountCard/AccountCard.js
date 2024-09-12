@@ -1,27 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import { CardTitle, CardHeader, CardBody } from 'react-bootstrap';
 import { CardText, Container, Col, Row, CardFooter, Badge } from 'react-bootstrap';
 import './AccountCard.css';
-import PieChart from '../LineChart/LineChart';
+import PieChart from '../BalanceChart/BalanceChart';
 import numberSequence from '../../data/transaction-sample.json';
+import { getAccountBalances } from '../../api/account_api';
+import './Spinner.css';
 
 const AccountCard = ({ account, cardIndex, isIterate }) => {
 
-    const [chartData, setChartData] = useState({
-      labels : numberSequence[cardIndex],
-      datasets : [
-        {
-          label: "Balance",
-          data: numberSequence[cardIndex],
-          borderWidth: 5,
-          tension: 0.3
-        },
-      ],
-    });
+    const [balances, setBalances] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [chartLoading, setChartLoading] = useState(true);
+
+    const [chartData, setChartData] = useState();
+
+    useEffect(() => {
+      const fetchedBalances = async () => {
+        try{
+          const balances = await getAccountBalances(account.id);
+
+            setBalances(balances);
+            setLoading(false);
+
+            setChartData({
+              labels : balances.map((balance) => balance.available),
+              datasets : [
+                {
+                  label: "Balance",
+                  data: balances.map((balance) => balance.available),
+                  borderWidth: 2,
+                  tension: 0.3
+                },
+              ],
+            });
+
+            setChartLoading(false);
+
+            console.log(balances);
+          } 
+        catch (err){
+          //handle failures
+        }
+      };
+      fetchedBalances();
+    }, []);
 
     return (
-        <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.type == "MANUAL" ? "manual-account" : "auto-account" }`}>
+        <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
           <CardHeader>
             { account.display_name } 
           </CardHeader>
@@ -35,11 +62,21 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
                       justifyContent: 'center',
                       height: '100%' // Ensure the Col takes up the full height of its container
                     }}>
-                    <img src={ account.logo_src } alt={ account.display_name } style={ { height : '75px', maxWidth : '100%'} } />
+                    <img src={ account.provider.logo_url } alt={ account.display_name } style={ { height : '75px', maxWidth : '100%'} } />
                   </Col>
                   <Col sm={10} >
                     {/* <img src={ account.sample_graph } alt={ account.display_name } style={ { width : '100%'} } /> */}
-                    <PieChart chartData={ chartData } />
+                    {
+                      chartLoading ? (
+                        <div className={'spinner-div'}><span class="loader"></span></div>
+                      ) : (
+                        <div>
+                          {
+                            <PieChart chartData={ chartData } />
+                          }
+                        </div>
+                      )
+                    }
                   </Col>
                 </Row>
                 <Row>
@@ -56,7 +93,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
                 <span className='px-4'>Analytics <Badge>NEW!</Badge></span>
               </Col>
               <Col sm={4} className={ ["text-end"] }>
-                <span className={`${account.balance < 0 ? 'negative-value' : ''}`}>{ account.currency } { account.balance }</span>
+                <span className={`${account.latest_balance.available < 0 ? 'negative-value' : ''}`}>{ account.latest_balance.currency } { account.latest_balance.available }</span>
               </Col>
               </Row>
             </CardFooter>

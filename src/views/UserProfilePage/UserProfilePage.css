@@ -1,0 +1,31 @@
+.avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.avatar-placeholder + h1 {
+    display:inline-block;
+    vertical-align: top;
+}
+
+.profileRows > div {
+    padding: 20px;
+}
+
+.profileRows > div:nth-of-type(odd){
+    background-color: #f9f9f9;
+}
+
+.provider-list > div {
+    display: inline-block;
+    width: 25%;
+    border:1px solid #ccc;
+    margin:20px;
+    background-color: #f9f9f9;
+    padding:20px;
+}

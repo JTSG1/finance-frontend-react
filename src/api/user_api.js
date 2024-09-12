@@ -2,14 +2,8 @@ import api from './api';
 
 const getLoggedInUserDetails = async () => {
 
-    const accessToken = localStorage.getItem('access')
-
     try {
-        const response = await api.get('/api/v1/current-user', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
+        const response = await api.get('/api/v1/current-user');
         return response.data;
     } catch (error) {
         console.error('Failed to get user details:', error);
