@@ -4,7 +4,7 @@ services:
     build: .
     restart: always
     environment:
-      FINANCE_APP_API_HOST: http://raspberrypi.local:8050
+      REACT_APP_FINANCE_API_HOST: http://raspberrypi.local:8050
     # remove for remote deployment
     ports:
       - "3000:80"
