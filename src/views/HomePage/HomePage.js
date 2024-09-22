@@ -29,7 +29,7 @@ const HomePage = ({}) => {
             <div>
                 {
                     loading ? (
-                        <div>Loading... [Create Carc Component]</div>
+                        <div className={'spinner-div'}><span class="loader"></span></div>
                     ) : (
                         <Row>
                             <Col sm={7}>

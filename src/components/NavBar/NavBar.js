@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import getLoggedInUserDetails from '../../api/user_api'
+import { getLoggedInUserDetails } from '../../api/user_api'
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';

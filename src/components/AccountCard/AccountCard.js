@@ -51,6 +51,9 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
         <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
           <CardHeader>
             { account.display_name } 
+            <span style={ { float: 'right'} }>
+              ({ account.number } { account.sort_code })
+            </span>
           </CardHeader>
           <CardBody>
             <CardText>
