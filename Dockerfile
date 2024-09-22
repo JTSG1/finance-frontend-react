@@ -5,6 +5,9 @@
 # Use node:latest as the builder image
 FROM node:latest AS builder
 
+ARG REACT_APP_FINANCE_APP_API_HOST
+ENV REACT_APP_FINANCE_APP_API_HOST=${REACT_APP_FINANCE_APP_API_HOST}
+
 # Set the working directory
 WORKDIR /app
 
