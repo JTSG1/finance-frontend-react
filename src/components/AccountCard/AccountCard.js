@@ -37,8 +37,6 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
             });
 
             setChartLoading(false);
-
-            console.log(balances);
           } 
         catch (err){
           //handle failures
@@ -93,7 +91,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
               <Col sm={8}>
                 <span>Transactions <Badge>100</Badge></span>
                 <span className='px-4'>Direct Debits <Badge>2</Badge></span>
-                <span className='px-4'>Analytics <Badge>NEW!</Badge></span>
+                {/* <span className='px-4'>Analytics <Badge>NEW!</Badge></span> */}
               </Col>
               <Col sm={4} className={ ["text-end"] }>
                 <span className={`${account.latest_balance.available < 0 ? 'negative-value' : ''}`}>{ account.latest_balance.currency } { account.latest_balance.available }</span>

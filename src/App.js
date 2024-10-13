@@ -10,6 +10,7 @@ import AccountDrilldown from './views/AccountDrilldown/AccountDrilldown';
 import UserProfilePage from './views/UserProfilePage/UserProfilePage';
 import LoginPage from './views/LoginPage/LoginPage';
 import LeftColNav from './components/LeftColNav/LeftColNav';
+import { UserContext, UserProvider } from './context/UserContext';
 
 // function AccountRoute() {
 //   const { accountIndex } = useParams(); // Extract accountIndex from the URL
@@ -51,54 +52,54 @@ function App() {
   };
 
   return (
+    <UserProvider>
+      <Router>
+          <Container fluid>
+            <div className="App">
+              {isLoggedIn ? (
+                  <div>
+                  <header style={ { height: '80px' } }>
+                    <NavBar appName={ appName }/>
+                  </header>
+                          <Routes>
+                            <Route path="/" element={ 
+                              <Row>
+                                <Col sm={1}>
+                                    <LeftColNav />
+                                </Col>
+                                <Col sm={11}>
+                                  <HomePage /> 
+                                </Col>
+                              </Row>
+                            }/>
+                            <Route path="/account/:accountIndex" element={ 
+                              <Row>
+                                <Col sm={1}>
+                                    <LeftColNav />
+                                </Col>
+                                <Col sm={11}>
+                                <AccountDrilldown />
+                                </Col>
+                              </Row>
+                            }/>
+                            <Route path="/userProfile/" element={ 
+                              <Row>
+                                <Col sm={12}>
+                                <UserProfilePage />
+                                </Col>
+                              </Row>
+                            }/>
+                          </Routes>
+                          
+                  </div>
+              ) : (
+                  <LoginPage onLogin={handleLogin}/>
+              )}
+            </div>
+          </Container>
 
-    <Router>
-        <Container fluid>
-          <div className="App">
-            {isLoggedIn ? (
-                <div>
-                <header style={ { height: '80px' } }>
-                  <NavBar appName={ appName }/>
-                </header>
-                
-                        <Routes>
-                          <Route path="/" element={ 
-                            <Row>
-                              <Col sm={1}>
-                                  <LeftColNav />
-                              </Col>
-                              <Col sm={11}>
-                                <HomePage /> 
-                              </Col>
-                            </Row>
-                          }/>
-                          <Route path="/account/:accountIndex" element={ 
-                            <Row>
-                              <Col sm={1}>
-                                  <LeftColNav />
-                              </Col>
-                              <Col sm={11}>
-                              <AccountDrilldown />
-                              </Col>
-                            </Row>
-                          }/>
-                           <Route path="/userProfile/" element={ 
-                            <Row>
-                              <Col sm={12}>
-                              <UserProfilePage />
-                              </Col>
-                            </Row>
-                          }/>
-                        </Routes>
-                        
-                </div>
-            ) : (
-                <LoginPage onLogin={handleLogin}/>
-            )}
-          </div>
-        </Container>
-
-    </Router>
+      </Router>
+    </UserProvider>
   );
 }
 

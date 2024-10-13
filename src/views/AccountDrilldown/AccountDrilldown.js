@@ -41,7 +41,7 @@ const AccountDrilldown = () => {
                             </Row>
                             <Row>
                                 <Col sm={7}>    
-                                    <TransactionParent />
+                                    <TransactionParent account={ accounts[accountIndex] } />
                                 </Col>
                             </Row>
                         </div>

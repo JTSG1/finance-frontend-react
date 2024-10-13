@@ -1,14 +1,16 @@
 import { Nav, Container, Row, Col, AccordionCollapse } from 'react-bootstrap';
 import './UserProfilePage.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { getLoggedInUserDetails, getUsersProviders } from '../../api/user_api'
+import { UserContext } from '../../context/UserContext';
 
 const UserProfilePage = () => {
 
-    const [userDetails, setUserDetails] = useState({});
     const [loading, setLoading] = useState(true);
     const [registeredProviders, setRegisteredProviders] = useState([]);
     const [availableProviders, setAvailableProviders] = useState([]);
+
+    const userDetails = useContext(UserContext);
 
     const getProviders = async (withCredentials = true) => {
         try {
@@ -28,8 +30,6 @@ const UserProfilePage = () => {
     useEffect(() => {
         const fetchedUserDetails = async () => {
             try{
-              const fetchedDetails = await getLoggedInUserDetails();
-                setUserDetails(fetchedDetails);
                 getProviders(true);
                 getProviders(false);
                 setLoading(false);

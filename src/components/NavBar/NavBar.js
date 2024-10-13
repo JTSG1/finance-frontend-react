@@ -1,27 +1,17 @@
 import { Link } from 'react-router-dom';
 import { getLoggedInUserDetails } from '../../api/user_api'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { UserContext } from '../../context/UserContext';
 import './NavBar.css';
 
 const NavBar = ({ appName }) => {
 
-    const [userDetails, setUserDetails] = useState({});
-    const [loading, setLoading] = useState(true);
+    const userDetails = useContext(UserContext);
 
     useEffect(() => {
-        const fetchedUserDetails = async () => {
-          try{
-            const fetchedDetails = await getLoggedInUserDetails();
-              setUserDetails(fetchedDetails);
-              setLoading(false);
-            } 
-          catch (err){
-            //handle failures
-          }
-        };
-        fetchedUserDetails();                       
+                     
     }, []);
 
     return (

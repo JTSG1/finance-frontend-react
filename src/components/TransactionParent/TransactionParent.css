@@ -1,0 +1,21 @@
+.cycle-container{
+    margin-bottom:5px;
+    border-radius:15px;
+    background-color: orange;
+    color:white;
+}
+.cycle-container.collapsed{
+    height:40px;
+    overflow-y:hidden;
+}
+
+
+.cycle-body{
+}
+.cycle-header{
+    padding:10px;
+}
+
+.cycle-footer{
+    padding:5px;
+}

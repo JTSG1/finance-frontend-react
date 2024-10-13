@@ -1,5 +1,27 @@
 .transaction_row {
     padding-top:5px;
-    margin-top:5px;
     border-bottom:1px solid #555;
+}
+
+.transaction_row:nth-of-type(even){
+    background-color:rgb(255, 248, 235);
+    color:black;
+}
+
+.transaction_row:nth-of-type(odd){
+    background-color:rgb(253, 230, 186);
+    color:black;
+}
+
+
+.transaction-classification-badge{
+    background-color:orange;
+    margin:5px;
+    padding:5px;
+    position: relative;
+    top:-3px;
+    box-sizing: border-box;
+    border-radius:15px;
+    color:white;
+    font-size:12px;
 }

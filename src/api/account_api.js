@@ -15,7 +15,7 @@ const getUsersAccounts = async (req, res) => {
 const getAccountBalances = async (accountId) => {
 
     try {
-        const response = await api.get(`/api/v1/accountBalance/${accountId}/    `);
+        const response = await api.get(`/api/v1/accountBalance/${accountId}/`);
         return response.data;
     } catch (error) {
         console.error('Failed to get account balances:', error);
@@ -24,4 +24,16 @@ const getAccountBalances = async (accountId) => {
 
 }
 
-export { getUsersAccounts, getAccountBalances };
+const getAccountTransactions = async (accountId) => {
+
+    try{
+        const response = await api.get(`api/v1/transaction/account/${accountId}/`);
+        return response.data;
+    } catch (error) {
+        console.error('Failed to get account transactions:', error);
+        throw error;
+    }
+
+}
+
+export { getUsersAccounts, getAccountBalances, getAccountTransactions };
