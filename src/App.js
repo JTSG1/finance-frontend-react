@@ -24,7 +24,7 @@ import { UserContext, UserProvider } from './context/UserContext';
 
 function App() {
 
-  let appName = "Super-Finance-App";
+  let appName = "Finbal";
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -54,50 +54,46 @@ function App() {
   return (
     <UserProvider>
       <Router>
-          <Container fluid>
             <div className="App">
               {isLoggedIn ? (
-                  <div>
-                  <header style={ { height: '80px' } }>
-                    <NavBar appName={ appName }/>
-                  </header>
-                          <Routes>
-                            <Route path="/" element={ 
-                              <Row>
-                                <Col sm={1}>
-                                    <LeftColNav />
-                                </Col>
-                                <Col sm={11}>
-                                  <HomePage /> 
-                                </Col>
-                              </Row>
-                            }/>
-                            <Route path="/account/:accountIndex" element={ 
-                              <Row>
-                                <Col sm={1}>
-                                    <LeftColNav />
-                                </Col>
-                                <Col sm={11}>
-                                <AccountDrilldown />
-                                </Col>
-                              </Row>
-                            }/>
-                            <Route path="/userProfile/" element={ 
-                              <Row>
-                                <Col sm={12}>
-                                <UserProfilePage />
-                                </Col>
-                              </Row>
-                            }/>
-                          </Routes>
-                          
-                  </div>
+                <div>
+                <header style={ { height: '80px' } }>
+                  <NavBar appName={ appName }/>
+                </header>
+                  <Routes>
+                    <Route path="/" element={ 
+                      <Row>
+                        <Col sm={1}>
+                            <LeftColNav />
+                        </Col>
+                        <Col sm={11}>
+                          <HomePage /> 
+                        </Col>
+                      </Row>
+                    }/>
+                    <Route path="/account/:accountIndex" element={ 
+                      <Row>
+                        <Col sm={1}>
+                            <LeftColNav />
+                        </Col>
+                        <Col sm={11}>
+                        <AccountDrilldown />
+                        </Col>
+                      </Row>
+                    }/>
+                    <Route path="/userProfile/" element={ 
+                      <Row>
+                        <Col sm={12}>
+                        <UserProfilePage />
+                        </Col>
+                      </Row>
+                    }/>
+                  </Routes>
+                </div>
               ) : (
                   <LoginPage onLogin={handleLogin}/>
               )}
             </div>
-          </Container>
-
       </Router>
     </UserProvider>
   );

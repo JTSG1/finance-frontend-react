@@ -37,63 +37,82 @@ const TransactionParent = ({ account }) => {
     }, [transactions])
 
     const getPayCycle = () => {
-
         /*
-            Funcation requires more work to account for shorter months and also maybe to account for weekends too
+            This function calculates pay cycles by adjusting the pay date for weekends
+            and handles shorter months, ensuring accurate cycle ranges.
         */
-
+    
         let payDay = userDetails.configs.PAY_DAY;
-        let cycles = {
-
-        }
-
+        let cycles = {}
+    
         transactions.map((transaction) => {
-
             let date = new Date(transaction.timestamp);
             let transactionDay = date.getDate();
             let transactionMonth = date.getMonth();
             let transactionYear = date.getFullYear();
-
+    
             let cycleStart;
             let cycleEnd;
-
-            let payDay = userDetails.configs.PAY_DAY;
-
-            if(transactionDay >= (payDay)){ 
-                cycleStart = formatCycleDate(new Date(transactionYear, transactionMonth, payDay));
-                cycleEnd = formatCycleDate(new Date(transactionYear, transactionMonth + 1, payDay - 1));
-
+    
+            // Calculate adjusted payday for the current month
+            let adjustedPayDay = calculateAdjustedPayDay(payDay, transactionYear, transactionMonth);
+    
+            if (transactionDay >= adjustedPayDay) { 
+                // Cycle starts this month, ends next month
+                cycleStart = formatCycleDate(new Date(transactionYear, transactionMonth, adjustedPayDay));
+                let nextMonth = transactionMonth + 1;
+                let cycleEndDay = calculateAdjustedPayDay(payDay, transactionYear, nextMonth);
+                cycleEnd = formatCycleDate(new Date(transactionYear, nextMonth, cycleEndDay - 1));
+    
                 let cycleKey = cycleStart + "-" + cycleEnd;
-                if(cycles[cycleKey] === undefined){
+                if (cycles[cycleKey] === undefined) {
                     cycles[cycleKey] = [transaction];
                 } else {
-                    cycles[cycleKey].push(transaction)
+                    cycles[cycleKey].push(transaction);
                 }
-
             } else {
-                cycleStart = formatCycleDate(new Date(transactionYear, transactionMonth -1, payDay));
-                cycleEnd = formatCycleDate(new Date(transactionYear, transactionMonth, payDay - 1));
-
+                // Cycle starts last month, ends this month
+                let previousMonth = transactionMonth - 1;
+                if (previousMonth < 0) {
+                    previousMonth = 11; // Handle December as the previous month of January
+                    transactionYear -= 1;
+                }
+                cycleStart = formatCycleDate(new Date(transactionYear, previousMonth, calculateAdjustedPayDay(payDay, transactionYear, previousMonth)));
+                cycleEnd = formatCycleDate(new Date(transactionYear, transactionMonth, adjustedPayDay - 1));
+    
                 let cycleKey = cycleStart + "-" + cycleEnd;
-                if(cycles[cycleKey] === undefined){
+                if (cycles[cycleKey] === undefined) {
                     cycles[cycleKey] = [transaction];
                 } else {
-                    cycles[cycleKey].push(transaction)
+                    cycles[cycleKey].push(transaction);
                 }
-
             }
-
         });
-
+    
         setTransactionCycles(cycles);
-
     }
-
-    const formatCycleDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString();
+    
+    // Helper function to adjust the payday if it falls on a weekend
+    const calculateAdjustedPayDay = (payDay, year, month) => {
+        let daysInMonth = new Date(year, month + 1, 0).getDate(); // Last day of the month
+        let adjustedPayDay = Math.min(payDay, daysInMonth); // Ensure payDay isn't beyond month's days
+        let payDate = new Date(year, month, adjustedPayDay);
+    
+        // Adjust for weekends (move backward if Saturday/Sunday)
+        if (payDate.getDay() === 0) { // Sunday
+            adjustedPayDay -= 2;
+        } else if (payDate.getDay() === 6) { // Saturday
+            adjustedPayDay -= 1;
+        }
+    
+        return adjustedPayDay;
     }
-
+    
+    // Example date formatting function
+    const formatCycleDate = (date) => {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+    
     return (
         <Card className="mt-2">
         <CardHeader>
@@ -106,7 +125,7 @@ const TransactionParent = ({ account }) => {
                     loading ? <div className={'spinner-div'}><span class="loader"></span></div> : (
                         Object.entries(transactionCycles).map(([key, value], index) => {
                             return (
-                                <TransactionCycle cycleName={key} transactionCycle={value} index={index} count={transactionCycles.length}/>
+                                <TransactionCycle cycleName={key} transactionCycle={value} index={index}/>
                             )
                         })
                     )

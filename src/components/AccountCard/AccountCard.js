@@ -47,7 +47,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
 
     return (
         <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
-          <CardHeader>
+          <CardHeader className={".card-bg-primary-finbal"}>
             { account.display_name } 
             <span style={ { float: 'right'} }>
               ({ account.number } { account.sort_code })
@@ -89,8 +89,8 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
           <CardFooter>
               <Row>
               <Col sm={8}>
-                <span>Transactions <Badge>100</Badge></span>
-                <span className='px-4'>Direct Debits <Badge>2</Badge></span>
+                {/* <span>Transactions <Badge>100</Badge></span>
+                <span className='px-4'>Direct Debits <Badge>2</Badge></span> */}
                 {/* <span className='px-4'>Analytics <Badge>NEW!</Badge></span> */}
               </Col>
               <Col sm={4} className={ ["text-end"] }>

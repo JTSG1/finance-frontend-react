@@ -2,18 +2,39 @@ import Transaction from '../Transaction/Transaction';
 import { useState, useEffect } from 'react';
 
 
-const TransactionCycle = ({cycleName, transactionCycle, index, count}) => {
-
-    console.log(transactionCycle);
+const TransactionCycle = ({cycleName, transactionCycle, index}) => {
 
     const [isCollapsed, setIsCollapsed] = useState(true);
+
+    console.log(transactionCycle);
 
     const isNotCollapsed = () => { 
         setIsCollapsed(!isCollapsed);
     }
 
+    const getCredits = () => {
+        let sum = 0;
+        sum = transactionCycle.reduce(
+            (sum, transaction) => {
+                let amount = parseFloat(transaction.amount);
+                return amount > 0 ? sum + amount : sum;
+            }, 0
+            ).toFixed(2)
+        return sum;
+    }
+
+    const getDebits = () => {
+        let sum = 0;
+        sum = transactionCycle.reduce(
+            (sum, transaction) => {
+                let amount = parseFloat(transaction.amount);
+                return amount < 0 ? sum + amount : sum;
+            }, 0
+            ).toFixed(2)
+        return sum;
+    }
+
     useEffect(() => {
-        console.log(count);
         if(index === 0){
             setIsCollapsed(false);
         }
@@ -27,7 +48,7 @@ const TransactionCycle = ({cycleName, transactionCycle, index, count}) => {
                         { cycleName } 
                     </span>
                     <span style={{ "float" : "right" }}>
-                        Count: { transactionCycle.length }
+                        <b>Count:</b> { transactionCycle.length } <b>Credits:</b> { getCredits() } <b>Debits:</b> { getDebits() }
                     </span>
                 </div>
                 <div className='container cycle-body'>{
