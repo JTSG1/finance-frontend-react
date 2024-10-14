@@ -3,8 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { CardTitle, CardHeader, CardBody } from 'react-bootstrap';
 import { CardText, Container, Col, Row, CardFooter, Badge } from 'react-bootstrap';
 import './AccountCard.css';
-import PieChart from '../BalanceChart/BalanceChart';
-import numberSequence from '../../data/transaction-sample.json';
+import LineChart from '../Charts/LineChart';
 import { getAccountBalances } from '../../api/account_api';
 import './Spinner.css';
 
@@ -73,7 +72,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
                       ) : (
                         <div>
                           {
-                            <PieChart chartData={ chartData } />
+                            <LineChart chartData={ chartData } />
                           }
                         </div>
                       )

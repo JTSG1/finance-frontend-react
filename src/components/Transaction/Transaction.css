@@ -4,12 +4,12 @@
 }
 
 .transaction_row:nth-of-type(even){
-    background-color:rgb(255, 248, 235);
+    background-color: rgb(255, 229, 213) !important;
     color:black;
 }
 
 .transaction_row:nth-of-type(odd){
-    background-color:rgb(253, 230, 186);
+    background-color:rgb(255, 248, 235);
     color:black;
 }
 

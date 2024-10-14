@@ -1,18 +1,18 @@
 // src/components/PieChart.js
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import {ArcElement} from 'chart.js'
 import Chart from 'chart.js/auto'
 
 
 
-function PieChart({ chartData }) {
+function LineChart({ chartData }) {
   return (
     <div className="chart-container">
-      <Line
+      <Doughnut
          data={chartData}
          options={{
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             elements: {
               point: {
                 radius: 0 // Removes the points from the line
@@ -40,13 +40,10 @@ function PieChart({ chartData }) {
               },
               display: false, // Hide
             },
-          },
-          animation: {
-            duration: 0, // Disable animations by setting duration to 0
           }
           }}
       />
     </div>
   );
 }
-export default PieChart;
+export default LineChart;

@@ -4,6 +4,8 @@ import AccountCard from '../../components/AccountCard/AccountCard';
 import TransactionParent from '../../components/TransactionParent/TransactionParent';
 import { getUsersAccounts } from '../../api/account_api';
 import { useEffect, useState } from 'react';
+import SummaryCard from '../../components/SummaryCard/SummaryCard'
+import PieChart from '../../components/Charts/DoughnutChart'
 
 const AccountDrilldown = () => {
 
@@ -11,6 +13,8 @@ const AccountDrilldown = () => {
 
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [chartData, setChartData] = useState();
 
     useEffect(() => {
         const fetchedAccounts = async () => {
@@ -24,6 +28,15 @@ const AccountDrilldown = () => {
           }
         };
         fetchedAccounts();
+        setChartData({
+            labels : ["a","b", "c", "d"],
+            datasets : [
+              {
+                label: "Balance",
+                data: [1,2,4,4],
+              },
+            ],
+          });
     }, []);
 
     return (
@@ -35,13 +48,21 @@ const AccountDrilldown = () => {
                     ) : (
                         <div>
                             <Row>
-                                <Col sm={7}>
+                                <Col sm={12}>
                                     <AccountCard account={ accounts[accountIndex] } cardIndex={accountIndex}/>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col sm={7}>    
                                     <TransactionParent account={ accounts[accountIndex] } />
+                                </Col>
+                                <Col sm={5}>
+                                    <SummaryCard title="Analysis">
+                                        <div style={ { "width":"40%", "margin":"auto", "textAlign":"center" } }>
+                                            <div>Share of spending</div>
+                                            <PieChart chartData={ chartData }/>
+                                        </div>
+                                    </SummaryCard>
                                 </Col>
                             </Row>
                         </div>

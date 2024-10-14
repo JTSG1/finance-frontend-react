@@ -2,14 +2,15 @@ import { Nav, Container, Row, Col } from 'react-bootstrap';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import { Link } from 'react-router-dom';
-import sampleSummaryData from '../../data/sampleSummaryData.json';
 import { getUsersAccounts } from '../../api/account_api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useContext} from 'react';
+import { UserContext } from '../../context/UserContext';
 
 const HomePage = ({}) => {
 
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const userDetails = useContext(UserContext);
 
     useEffect(() => {
         const fetchedAccounts = async () => {
@@ -19,7 +20,7 @@ const HomePage = ({}) => {
               setLoading(false);
             } 
           catch (err){
-            //handle failures
+            console.error("UNABLE TO GET USER ACCOUNTS", err);
           }
         };
         fetchedAccounts();
@@ -46,7 +47,19 @@ const HomePage = ({}) => {
                                 }
                             </Col>
                             <Col >
-                                <SummaryCard summaryData={sampleSummaryData}/> 
+                                <SummaryCard title={"Summary"}>
+                                    {
+                                        
+                                            Object.entries(userDetails.configs).map(([key, value], index) => {
+                                              return (
+                                                <div key={"config_" + key}>
+                                                  <span>{ key }</span>
+                                                  <span className='float-end'>{ value }</span>
+                                                </div>
+                                              )
+                                            })
+                                    }
+                                </SummaryCard> 
                             </Col>
                         </Row>
                     )

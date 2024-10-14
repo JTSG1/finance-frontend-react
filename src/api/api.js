@@ -10,6 +10,8 @@ const api = axios.create({
     }
 });
 
+console.log("APIIIII", process.env.REACT_APP_FINANCE_APP_API_HOST);
+
 const refreshAccessToken = async () => {
     const refreshToken = localStorage.getItem('refresh');
     try {
