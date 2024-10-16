@@ -7,33 +7,21 @@ import { UserContext } from '../../context/UserContext';
 import TransactionCycle from '../TransactionCycle/TransactionCycle';
 import './TransactionParent.css'
 
-const TransactionParent = ({ account }) => {
+const TransactionParent = ({ transactions }) => {
 
-    const [transactions, setTransactions] = useState([]);
+    //const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [transactionCycles, setTransactionCycles] = useState({})
 
     const userDetails = useContext(UserContext);
 
     useEffect(() => {
-        const fetchedAccounts = async () => {
-          try{
-            const fetchedDetails = await getAccountTransactions(account.id);
-              setTransactions(fetchedDetails);
-              setLoading(false);
-            } 
-          catch (err){
-            //handle failures
-            console.error(err);
-          }
-        };
-        fetchedAccounts();
-    }, []);
-
-    useEffect(() => {
         if (transactions.length > 0) { 
             getPayCycle();
           }
+        if(transactions){
+            setLoading(false);
+        }
     }, [transactions])
 
     const getPayCycle = () => {
@@ -57,6 +45,7 @@ const TransactionParent = ({ account }) => {
             // Calculate adjusted payday for the current month
             let adjustedPayDay = calculateAdjustedPayDay(payDay, transactionYear, transactionMonth);
     
+            // we see if the transaction day is within the adjustedPayDay cycle or the one before
             if (transactionDay >= adjustedPayDay) { 
                 // Cycle starts this month, ends next month
                 cycleStart = formatCycleDate(new Date(transactionYear, transactionMonth, adjustedPayDay));
@@ -64,7 +53,7 @@ const TransactionParent = ({ account }) => {
                 let cycleEndDay = calculateAdjustedPayDay(payDay, transactionYear, nextMonth);
                 cycleEnd = formatCycleDate(new Date(transactionYear, nextMonth, cycleEndDay - 1));
     
-                let cycleKey = cycleStart + "-" + cycleEnd;
+                let cycleKey = cycleStart + " - " + cycleEnd;
                 if (cycles[cycleKey] === undefined) {
                     cycles[cycleKey] = [transaction];
                 } else {
@@ -80,7 +69,7 @@ const TransactionParent = ({ account }) => {
                 cycleStart = formatCycleDate(new Date(transactionYear, previousMonth, calculateAdjustedPayDay(payDay, transactionYear, previousMonth)));
                 cycleEnd = formatCycleDate(new Date(transactionYear, transactionMonth, adjustedPayDay - 1));
     
-                let cycleKey = cycleStart + "-" + cycleEnd;
+                let cycleKey = cycleStart + " - " + cycleEnd;
                 if (cycles[cycleKey] === undefined) {
                     cycles[cycleKey] = [transaction];
                 } else {
@@ -110,7 +99,7 @@ const TransactionParent = ({ account }) => {
     
     // Example date formatting function
     const formatCycleDate = (date) => {
-        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        return `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`;
     }
     
     return (

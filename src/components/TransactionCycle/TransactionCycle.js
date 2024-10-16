@@ -6,8 +6,6 @@ const TransactionCycle = ({cycleName, transactionCycle, index}) => {
 
     const [isCollapsed, setIsCollapsed] = useState(true);
 
-    console.log(transactionCycle);
-
     const isNotCollapsed = () => { 
         setIsCollapsed(!isCollapsed);
     }

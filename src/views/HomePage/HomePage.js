@@ -36,7 +36,7 @@ const HomePage = ({}) => {
                             <Col sm={7}>
                                 {
                                 accounts.map((account, index) => (
-                                    <Link to={'/account/' + index} style={{ textDecoration: 'none' }}>
+                                    <Link to={'/account/' + account.id} style={{ textDecoration: 'none' }}>
                                         <Row key={index}>
                                             <Col sm={12}>
                                                 <AccountCard account={ account } cardIndex={ index } isIterate={ true    }/>

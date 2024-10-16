@@ -23,6 +23,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
             setBalances(balances);
             setLoading(false);
 
+            // we get balance history for the account and map it the chart data
             setChartData({
               labels : balances.map((balance) => balance.available),
               datasets : [
@@ -46,6 +47,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
 
     return (
         <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
+
           <CardHeader className={".card-bg-primary-finbal"}>
             { account.display_name } 
             <span style={ { float: 'right'} }>
@@ -65,7 +67,6 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
                     <img src={ account.provider.logo_url } alt={ account.display_name } style={ { height : '75px', maxWidth : '100%'} } />
                   </Col>
                   <Col sm={10} >
-                    {/* <img src={ account.sample_graph } alt={ account.display_name } style={ { width : '100%'} } /> */}
                     {
                       chartLoading ? (
                         <div className={'spinner-div'}><span class="loader"></span></div>
@@ -88,15 +89,12 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
           <CardFooter>
               <Row>
               <Col sm={8}>
-                {/* <span>Transactions <Badge>100</Badge></span>
-                <span className='px-4'>Direct Debits <Badge>2</Badge></span> */}
-                {/* <span className='px-4'>Analytics <Badge>NEW!</Badge></span> */}
               </Col>
               <Col sm={4} className={ ["text-end"] }>
                 <span className={`${account.latest_balance.available < 0 ? 'negative-value' : ''}`}>{ account.latest_balance.currency } { account.latest_balance.available }</span>
               </Col>
               </Row>
-            </CardFooter>
+          </CardFooter>
         </Card>
     )
 

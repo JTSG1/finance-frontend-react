@@ -71,7 +71,7 @@ function App() {
                         </Col>
                       </Row>
                     }/>
-                    <Route path="/account/:accountIndex" element={ 
+                    <Route path="/account/:accountId" element={ 
                       <Row>
                         <Col sm={1}>
                             <LeftColNav />

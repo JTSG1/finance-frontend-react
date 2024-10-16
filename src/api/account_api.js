@@ -1,9 +1,14 @@
 import api from './api';
 
-const getUsersAccounts = async (req, res) => {
+const getUsersAccounts = async (accountId = undefined) => {
 
     try {
-        const response = await api.get('/api/v1/account/');
+        let response = "";
+        if(accountId === undefined){
+            response = await api.get('/api/v1/account/')
+        } else {
+            response = await api.get(`/api/v1/account/${accountId}/`)
+        }
         return response.data;
     } catch (error) {
         console.error('Failed to get account details:', error);

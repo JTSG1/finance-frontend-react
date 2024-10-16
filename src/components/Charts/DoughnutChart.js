@@ -24,7 +24,7 @@ function LineChart({ chartData }) {
                text: ""
              },
              legend: {
-               display: false
+               display: true
              }
            },
            scales: {
