@@ -1,14 +1,35 @@
 .navLeft {
     margin:0;
     padding:0;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.title{
+    padding:10px;
+    font-size:1.5em;
+    text-decoration: underline;
+    text-align: center;
+    color:goldenrod;
 }
 
 .navLeft > ul {
     list-style-type:none;
     margin:0;
     padding:0;
+    width:100%;
 }
 
 .navLeft > ul > li {
     padding:10px;
+    border:1px solid goldenrod;
+}
+
+.navLeft > ul > li > a {
+    color:black;
+    text-align: center;
+    width:100%;
 }

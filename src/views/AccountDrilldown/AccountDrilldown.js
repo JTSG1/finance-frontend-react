@@ -11,7 +11,7 @@ const AccountDrilldown = () => {
 
     const { accountId } = useParams();
 
-    const [account, setAccount] = useState([]);
+    const [account, setAccount] = useState();
     const [accountIsCredit, setAccountIsCredit] = useState(false);
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,11 +21,12 @@ const AccountDrilldown = () => {
 
     useEffect(() => {
 
+        console.log("accountId", accountId);
+
         const fetchedAccounts = async () => {
             try {
                 const fetchedDetails = await getUsersAccounts(accountId);
                 setAccount(fetchedDetails);
-                setLoading(false);
             }
             catch (err) {
                 //handle failures
@@ -36,20 +37,22 @@ const AccountDrilldown = () => {
 
     useEffect(() => {
 
-        account.type === "CREDIT" ? setAccountIsCredit(true) : setAccountIsCredit(false);
+        if(account){
 
-        const fetchTransactions = async () => {
-            try {
-                const fetchedDetails = await getAccountTransactions(account.id);
-                setTransactions(fetchedDetails);
-                //setLoading(false);
-            }
-            catch (err) {
-                //handle failures
-                console.error(err);
-            }
-        };
-        fetchTransactions();
+            account.type === "CREDIT" ? setAccountIsCredit(true) : setAccountIsCredit(false);
+
+            const fetchTransactions = async () => {
+                try {
+                    const fetchedDetails = await getAccountTransactions(account.id);
+                    setTransactions(fetchedDetails);
+                }
+                catch (err) {
+                    //handle failures
+                    console.error(err);
+                }
+            };
+            fetchTransactions();
+        }
 
     }, [account])
 
@@ -88,8 +91,6 @@ const AccountDrilldown = () => {
                 }
             })
 
-            console.log("summarised", summarised);
-
             const generateRandomColor = () => {
                 const letters = '0123456789ABCDEF';
                 let color = '#';
@@ -113,11 +114,12 @@ const AccountDrilldown = () => {
             
             });
             setLoadingChart(false);
+
+            setLoading(false);
         }
         summariseSpendingForChart();
     }, [transactions])
-
-    
+  
     return (
         <Row>
             <Container fluid>

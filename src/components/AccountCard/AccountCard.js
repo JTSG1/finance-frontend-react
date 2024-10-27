@@ -18,7 +18,7 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
     useEffect(() => {
       const fetchedBalances = async () => {
         try{
-          const balances = await getAccountBalances(account.id);
+            const balances = await getAccountBalances(account.id);
 
             setBalances(balances);
             setLoading(false);
@@ -35,19 +35,20 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
                 },
               ],
             });
-
+            console.log("CHART", chartLoading);
             setChartLoading(false);
+            console.log("CHART", chartLoading);
           } 
         catch (err){
           //handle failures
         }
       };
       fetchedBalances();
-    }, []);
+    }, [account]);
 
     return (
-        <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
-
+        account ? (
+          <Card className={`${ cardIndex > 0 && isIterate ? "mt-2" : "" } ${ account.is_manual_account ? "manual-account" : "auto-account" }`}>
           <CardHeader className={".card-bg-primary-finbal"}>
             { account.display_name } 
             <span style={ { float: 'right'} }>
@@ -96,6 +97,10 @@ const AccountCard = ({ account, cardIndex, isIterate }) => {
               </Row>
           </CardFooter>
         </Card>
+        ) : (
+          <div>null</div>
+        )
+        
     )
 
 }

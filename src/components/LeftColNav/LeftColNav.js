@@ -9,6 +9,7 @@ const LeftColNav = ({}) => {
 
     return (
         <div className='navLeft'>
+          <div className='title'>Daytoday</div>
           <ul>
             <li><Link to="/">Home</Link></li>
           </ul>

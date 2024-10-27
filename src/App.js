@@ -57,33 +57,43 @@ function App() {
             <div className="App">
               {isLoggedIn ? (
                 <div>
-                <header style={ { height: '80px' } }>
-                  <NavBar appName={ appName }/>
-                </header>
                   <Routes>
                     <Route path="/" element={ 
                       <Row>
-                        <Col sm={1}>
+                        <Col sm={1} className="leftNavCol">
                             <LeftColNav />
                         </Col>
-                        <Col sm={11}>
+                        <Col sm={11} className={"no-padding"}>
+                          <header>
+                            <NavBar appName={ appName }/>
+                          </header>
                           <HomePage /> 
                         </Col>
                       </Row>
                     }/>
                     <Route path="/account/:accountId" element={ 
                       <Row>
-                        <Col sm={1}>
+                        <Col sm={1} className="leftNavCol">
                             <LeftColNav />
                         </Col>
-                        <Col sm={11}>
+                        <Col sm={11} className={"no-padding"}>
+                          <header>
+                            <NavBar appName={ appName }/>
+                          </header>
                         <AccountDrilldown />
                         </Col>
                       </Row>
                     }/>
                     <Route path="/userProfile/" element={ 
                       <Row>
-                        <Col sm={12}>
+                        
+                        <Col sm={1} className="leftNavCol">
+                            <LeftColNav />
+                        </Col>
+                        <Col sm={11} className={"no-padding"}>
+                          <header>
+                            <NavBar appName={ appName }/>
+                          </header>
                         <UserProfilePage />
                         </Col>
                       </Row>

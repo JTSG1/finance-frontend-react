@@ -15,8 +15,9 @@ const NavBar = ({ appName }) => {
     }, []);
 
     return (
-        <nav className="p-3 navbar finbal-theme">
-          <Link to="/" className="nav-link">{ appName }</Link>
+        <nav className="p-3 mb-4 navbar finbal-theme">
+          {/* <Link to="/" className="nav-link">{ appName }</Link> */}
+          <span></span>
           <Link to="/userProfile" className="nav-link ml-auto">
             <FontAwesomeIcon icon={faUser} className='userIcon'/>
             { userDetails.username } ({ userDetails.email })
